@@ -16,17 +16,19 @@ async def root():
 @app.post("/query")
 async def handle_query(query: Query):
     # Run the LangGraph orchestration
-    inputs = {"messages": [HumanMessage(content=query.text)]}
+    inputs = {"messages": [HumanMessage(content=query.text)], "data_context": ""}
     result = gungnir_app.invoke(inputs)
     
     # Extract the last message content
     final_response = result['messages'][-1].content if result['messages'] else "No response generated."
+    context_found = result.get('data_context', 'No context')
     
     return {
         "status": "success",
         "query": query.text,
         "response": final_response,
-        "orchestrator": "Gungnir-LangGraph-v1"
+        "context": context_found,
+        "orchestrator": "Gungnir-LangGraph-v2"
     }
 
 if __name__ == "__main__":
