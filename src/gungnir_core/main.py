@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
+from gungnir_core.agent import gungnir_app
+from langchain_core.messages import HumanMessage
 
 app = FastAPI(title="Gungnir-Core Orchestrator", version="0.1.0")
 
@@ -13,8 +15,19 @@ async def root():
 
 @app.post("/query")
 async def handle_query(query: Query):
-    # Future: Integrate LangGraph Supervisor here
-    return {"status": "received", "query": query.text, "agent": "Odin-Alpha"}
+    # Run the LangGraph orchestration
+    inputs = {"messages": [HumanMessage(content=query.text)]}
+    result = gungnir_app.invoke(inputs)
+    
+    # Extract the last message content
+    final_response = result['messages'][-1].content if result['messages'] else "No response generated."
+    
+    return {
+        "status": "success",
+        "query": query.text,
+        "response": final_response,
+        "orchestrator": "Gungnir-LangGraph-v1"
+    }
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
