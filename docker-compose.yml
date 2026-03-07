@@ -1,0 +1,48 @@
+services:
+  gungnir-core:
+    build: ./gungnir-core
+    ports:
+      - "8000:8000"
+    environment:
+      - QDRANT_HOST=qdrant
+      - LAKEFS_ENDPOINT=http://lakefs:8000
+    networks:
+      - gungnir-net
+    depends_on:
+      - qdrant
+
+  mjolnir-fabric:
+    build: ./mjolnir-fabric
+    environment:
+      - QDRANT_HOST=qdrant
+    networks:
+      - gungnir-net
+    depends_on:
+      - qdrant
+
+  bifrost-gate:
+    build: ./bifrost-gate
+    ports:
+      - "8001:8001"
+    environment:
+      - GUNGNIR_CORE_URL=http://gungnir-core:8000
+    networks:
+      - gungnir-net
+    depends_on:
+      - gungnir-core
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+    networks:
+      - gungnir-net
+    volumes:
+      - qdrant_storage:/qdrant/storage
+
+networks:
+  gungnir-net:
+    driver: bridge
+
+volumes:
+  qdrant_storage:
