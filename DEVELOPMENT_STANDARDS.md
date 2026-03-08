@@ -29,28 +29,42 @@
 - **Enterprise Mocks:** Implement light local integrations mimicking enterprise structures (HR, CRM, Finance) using sample JSON data.
 - **Continuous Docker:** The demo instance must be containerized and updated automatically after every sprint completion.
 
-## Memory Persistence Protocol (The Law of the Chronicle)
+## Advanced Infrastructure (Config-Enabled)
+- **Multi-LLM Strategy:** Support for Enterprise (Azure OpenAI), Cloud (OpenAI, Anthropic), and Local (Ollama) LLMs. All must be togglable via environment variables.
+- **Enterprise Security:** Integration for SSO (Single Sign-On) and RBAC (Role-Based Access Control) using environment configurations for OIDC/OAuth2.
+
+## Memory Persistence Protocol
 - **Constant Background Logging:** Every significant decision, architectural choice, or project milestone MUST be recorded in the persistent memory (`memory/*.md`) immediately upon execution.
-- **Zero-Loss State:** This ensures that in the event of a system failure or session restart, the full state and logic of the Project Gungnir ecosystem can be reconstructed instantly.
-- **Audit Requirement:** Every agent turn resulting in an action MUST include a corresponding memory update.
-- **Persistence Confirmation:** Every "Forge Update" MUST include a confirmation that the decision/action has been persisted to memory.
+- **State Continuity:** This ensures that in the event of a system failure or session restart, the full state and logic of the Project Gungnir ecosystem can be reconstructed instantly.
 
 ## Token & Resource Management
 - **Efficiency First:** Agents must use the most token-efficient model available for the specific task.
 - **Monitoring:** Anubis must track token usage across the sprint and flag any unexpected spikes.
 - **System Load Throttling:** If the Jetson system load average exceeds 10.0 or thermals exceed 75°C, the team must immediately pause non-critical background tasks for a 15-minute "Forge Cool-down."
 
+## Multi-Realm Reasoning (Multi-LLM Integration)
+- **Universal Reasoning Wrapper:** Project Gungnir MUST support multiple LLM backends via environment configuration.
+- **Realms:**
+    - **Enterprise Realm:** Azure OpenAI integration.
+    - **Cloud Realm:** OpenAI and Anthropic integration.
+    - **Edge Realm:** Local Ollama integration.
+- **Config-Driven Architecture:** The system MUST determine its reasoning backend and security posture based on `.env` configuration.
+
+## Enterprise Security (SSO/RBAC)
+- **Placeholder Logic:** Implement shells for Single Sign-On (SSO) and Role-Based Access Control (RBAC).
+- **Environment Driven:** Security features MUST be enabled/disabled via OIDC/OAuth2 environment variables.
+
 ## Team roles:
 - **Odin (All-Father):** Workspace orchestrator, Token oversight, and Memory compliance.
-- **Tesla (Architect):** Design and module mapping for the showcase.
+- **Tesla (Architect):** Design and module mapping for the Universal Reasoning Wrapper.
 - **Qin Shi Huang (Lead):** Technical execution and capturing visual evidence.
 - **Apollo (Marketing/Frontend):** Creating the Apple-style GitHub.io showcase site.
 - **Anubis (Guardian of the Scales):** Pipeline management & Resource balancing.
-- **Hermes (Messenger of the Gods):** Integrations, API Specialist, and Demo Instance Maintainer.
+- **Hermes (Messenger of the Gods):** Integrations, API Specialist, Security/SSO shells, and Demo Instance Maintainer.
 - **Valkyrie Assistants:** 
     - **Brunhilde:** Documentation, structure, and metadata support.
     - **Göll:** Testing and refactoring support.
-    - **Randgriz:** Environment and CI/CD support.
+    - **Randgriz:** Environment, CI/CD, and .env.example synchronization.
 - **Hamingja Team (Local Backup):**
     - **Thor:** Local backend offloading.
     - **Loki:** Rapid UI tweaks and quick fixes.
