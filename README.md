@@ -1,9 +1,10 @@
 # Gungnir-Core
 
-## Visual Evidence
-Functional evidence of the Gungnir-Core orchestrator is available on the [Bifrost Showcase](https://ankurces.github.io/gungnir-landing-page/).
+## Visual Evidence (Phase 2)
+The integrated Gungnir-Mjolnir-Bifrost RAG loop is live on the [Bifrost Showcase](https://ankurces.github.io/gungnir-landing-page/).
 
-![Phase 1 Terminal](../gungnir-landing-page/assets/phase1-demo.jpg)
+![Nexus Demo](../gungnir-landing-page/assets/nexus-demo.jpg)
+*Figure 2: End-to-End RAG reasoning demonstrating the Nexus connection.*
 
 ## Project Gungnir
 Project Gungnir is an enterprise-grade multiagent orchestrator and data fabric.

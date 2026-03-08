@@ -1,5 +1,4 @@
 from typing import Annotated, List, Tuple, TypedDict, Union
-from langchain_openai import ChatOpenAI
 from langgraph.graph import StateGraph, END
 from langchain_core.messages import BaseMessage, HumanMessage
 import os
