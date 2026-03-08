@@ -6,9 +6,10 @@
 - **Developer Name:** Ankur Nair
 - **LinkedIn Profile:** [Ankur Nair](https://www.linkedin.com/in/ankur-nair-10baab350?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 
-## Commit Guidelines
-- Commit at least once every **30 minutes**.
-- Meaningful commit messages are mandatory.
+## Commit & Push Guidelines
+- **Mandatory Tempo:** Commit AND Push to the GitHub repository every **30 minutes**.
+- **Visibility:** This is a hard requirement for zero-loss state and real-time client visibility.
+- **Meaningful Messages:** Meaningful commit messages are mandatory.
 - **Mandatory Notification Format:** Every module or feature committed must be reported to Odin in the following format:
   1. Repository Name
   2. Summary of module/feature
