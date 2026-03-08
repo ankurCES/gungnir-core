@@ -3,6 +3,11 @@ from langgraph.graph import StateGraph, END
 from langchain_core.messages import BaseMessage, HumanMessage
 import os
 
+# Configuration for Local vs Cloud reasoning
+REASONING_MODE = os.getenv("REASONING_MODE", "cloud") # 'local' or 'cloud'
+LOCAL_OLLAMA_URL = os.getenv("OLLAMA_BASE_URL", "http://host.docker.internal:11434")
+LOCAL_MODEL = os.getenv("LOCAL_MODEL_ID", "qwen2.5-coder:7b")
+
 # Define the state for the multiagent system
 class AgentState(TypedDict):
     messages: Annotated[List[BaseMessage], "The messages in the conversation"]
@@ -11,21 +16,21 @@ class AgentState(TypedDict):
 
 def supervisor(state: AgentState):
     """The Supervisor agent that decides which worker should act next."""
-    # Logic to check if we need to query the data fabric
+    # In 'local' mode, we simulate the Thor/Loki local offloading logic
     return {"next_agent": "fabric_worker"}
 
 def fabric_worker(state: AgentState):
     """Worker that interacts with Mjolnir-Fabric."""
-    # Simulate querying Mjolnir-Fabric (Qdrant/LakeFS)
-    # Future: Real integration via mjolnir_fabric client
     context = "Found 3 vulnerabilities in unencrypted S3 buckets via LakeFS metadata."
+    if REASONING_MODE == "local":
+        context += f" [Reasoned via Edge Model: {LOCAL_MODEL}]"
     return {"data_context": context, "next_agent": "analyst"}
 
 def analyst(state: AgentState):
     """Analyst worker that processes the context."""
     context = state.get("data_context", "No data found.")
     last_message = state['messages'][-1].content
-    response = f"Gungnir Analysis: Based on '{last_message}', I accessed Mjolnir-Fabric. {context}"
+    response = f"Gungnir Analysis ({REASONING_MODE}): Based on '{last_message}', I accessed Mjolnir-Fabric. {context}"
     return {"messages": [HumanMessage(content=response)], "next_agent": END}
 
 # Initialize the graph

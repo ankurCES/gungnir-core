@@ -6,6 +6,11 @@ services:
     environment:
       - QDRANT_HOST=qdrant
       - LAKEFS_ENDPOINT=http://lakefs:8000
+      - REASONING_MODE=local
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - LOCAL_MODEL_ID=qwen2.5-coder:7b
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     networks:
       - gungnir-net
     depends_on:
