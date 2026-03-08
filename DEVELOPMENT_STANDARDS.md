@@ -55,6 +55,11 @@
 - **Placeholder Logic:** Implement shells for Single Sign-On (SSO) and Role-Based Access Control (RBAC).
 - **Environment Driven:** Security features MUST be enabled/disabled via OIDC/OAuth2 environment variables.
 
+## Operational Tempo: 24/7 Continuous Forge
+- **Round-the-Clock Execution:** The Einherjar Team operates on a 24/7 asynchronous rotation until MVP delivery (Monday 08:00 CST).
+- **Metric: Speed:** Speed is the primary operational metric. Parallelization MUST be maximized by delegating all supporting tasks to Valkyries and Hamingja units.
+- **Push Frequency:** Mandatory 30-minute COMMIT and PUSH frequency is strictly enforced. No exceptions.
+
 ## UI Bifurcation Mandate
 Project Gungnir utilizes a dual-interface strategy to separate operational control from public presentation:
 
