@@ -31,6 +31,13 @@ services:
     depends_on:
       - gungnir-core
 
+  valkyrie-integrations:
+    build: ./valkyrie-integrations
+    ports:
+      - "8002:8002"
+    networks:
+      - gungnir-net
+
   qdrant:
     image: qdrant/qdrant:latest
     ports:
