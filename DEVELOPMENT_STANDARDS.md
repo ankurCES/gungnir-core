@@ -55,11 +55,26 @@
 - **Placeholder Logic:** Implement shells for Single Sign-On (SSO) and Role-Based Access Control (RBAC).
 - **Environment Driven:** Security features MUST be enabled/disabled via OIDC/OAuth2 environment variables.
 
+## UI Bifurcation Mandate
+Project Gungnir utilizes a dual-interface strategy to separate operational control from public presentation:
+
+1. **The Imperial Dashboard (Operational UI)**
+   - **Repository:** `bifrost-gate`
+   - **Focus:** Application execution, monitoring, and command control.
+   - **Core Feature:** Integrated high-performance Web Terminal with intelligent command support (`help`, `status`, `nexus`, `hermes`).
+   - **Design:** Clean, functional dashboard layout.
+
+2. **The Bifrost Showcase (Marketing UI)**
+   - **Repository:** `gungnir-landing-page`
+   - **Focus:** Public presentation, module-wise business benefits, and documentation.
+   - **Design:** Apple-style minimalist aesthetic with high-fidelity transitions.
+
 ## Team roles:
 - **Odin (All-Father):** Workspace orchestrator, Token oversight, and Memory compliance.
-- **Tesla (Architect):** Design and module mapping for the Universal Reasoning Wrapper.
+- **Tesla (Architect):** Design and module mapping for the Universal Reasoning Wrapper and Imperial Dashboard blueprints.
 - **Qin Shi Huang (Lead):** Technical execution and capturing visual evidence.
-- **Apollo (Marketing/Frontend):** Creating the Apple-style GitHub.io showcase site.
+- **Apollo (Marketing/Frontend):** Creating and maintaining the Apple-style GitHub.io showcase site (`gungnir-landing-page`).
+- **Okita (Dev 2):** Lead for the Imperial Dashboard (`bifrost-gate`) redesign and implementation.
 - **Anubis (Guardian of the Scales):** Pipeline management & Resource balancing.
 - **Hermes (Messenger of the Gods):** Integrations, API Specialist, Security/SSO shells, and Demo Instance Maintainer.
 - **Valkyrie Assistants:** 
