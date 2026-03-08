@@ -15,15 +15,25 @@
   3. Link to commit or branch (if available)
   4. The **"Why"** behind the module.
 
-## Visual Evidence: Recording Protocol
-- **Browser-Based Execution:** Every module's visual evidence MUST be captured by running the developed tool interface directly in a browser.
-- **Proper Demo Elements:** The recording must use realistic demo elements, mock data, and proper user interactions to demonstrate the module's "mission."
-- **Repository Persistence:** The screen recording must be saved *within the repository* (e.g., in `/docs/evidence/` or `/assets/`).
-- **Display:** These recordings must be embedded in the repository `README.md` and showcased on the GitHub.io site for each module.
+## Showcase (GitHub.io) Standards
+- **Module-Wise Structure:** Clear, module-by-module structure designed for human and AI comprehension.
+- **Visual Evidence per Module:** 
+    - **Browser-Based Recording:** Every module section MUST include a screen recording performed directly on the developed tool interface within a browser. 
+    - **Proper Demos:** Recordings must use proper demo elements (mock data/interactions) to showcase functionality.
+    - **Storage:** These recordings must be saved as part of the repository (e.g., in `/docs/evidence/` or `/assets/`) and displayed in the `README.md` and the GitHub.io site.
+    - **Benefit Analysis:** Include a "Why" (Business Benefits) analysis for each module.
+- **Documentation Hub:** The showcase site serves as the functional, intuitive documentation for the entire project.
 
-## Team Responsibilities (Recording)
-- **Qin Shi Huang (Lead):** Responsible for delivering the functional interface for recording.
-- **Apollo (Marketing):** Responsible for performing the browser-based recording and integrating it into the showcase.
+## Integrations & Demo Module
+- **Open APIs:** Include at least two public Open API integrations (e.g., Weather, Finance).
+- **Enterprise Mocks:** Implement light local integrations mimicking enterprise structures (HR, CRM, Finance) using sample JSON data.
+- **Continuous Docker:** The demo instance must be containerized and updated automatically after every sprint completion.
+
+## Memory Persistence Protocol (The Law of the Chronicle)
+- **Constant Background Logging:** Every significant decision, architectural choice, or project milestone MUST be recorded in the persistent memory (`memory/*.md`) immediately upon execution.
+- **Zero-Loss State:** This ensures that in the event of a system failure or session restart, the full state and logic of the Project Gungnir ecosystem can be reconstructed instantly.
+- **Audit Requirement:** Every agent turn resulting in an action MUST include a corresponding memory update.
+- **Persistence Confirmation:** Every "Forge Update" MUST include a confirmation that the decision/action has been persisted to memory.
 
 ## Token & Resource Management
 - **Efficiency First:** Agents must use the most token-efficient model available for the specific task.
@@ -31,11 +41,12 @@
 - **System Load Throttling:** If the Jetson system load average exceeds 10.0 or thermals exceed 75°C, the team must immediately pause non-critical background tasks for a 15-minute "Forge Cool-down."
 
 ## Team roles:
-- **Odin (All-Father):** Workspace orchestrator & Token oversight.
+- **Odin (All-Father):** Workspace orchestrator, Token oversight, and Memory compliance.
 - **Tesla (Architect):** Design and module mapping for the showcase.
 - **Qin Shi Huang (Lead):** Technical execution and capturing visual evidence.
 - **Apollo (Marketing/Frontend):** Creating the Apple-style GitHub.io showcase site.
 - **Anubis (Guardian of the Scales):** Pipeline management & Resource balancing.
+- **Hermes (Messenger of the Gods):** Integrations, API Specialist, and Demo Instance Maintainer.
 - **Valkyrie Assistants:** 
     - **Brunhilde:** Documentation, structure, and metadata support.
     - **Göll:** Testing and refactoring support.
