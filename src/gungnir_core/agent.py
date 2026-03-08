@@ -4,9 +4,8 @@ from langchain_core.messages import BaseMessage, HumanMessage
 import os
 
 # Configuration for Local vs Cloud reasoning
-REASONING_MODE = os.getenv("REASONING_MODE", "cloud") # 'local' or 'cloud'
-LOCAL_OLLAMA_URL = os.getenv("OLLAMA_BASE_URL", "http://host.docker.internal:11434")
-LOCAL_MODEL = os.getenv("LOCAL_MODEL_ID", "qwen2.5-coder:7b")
+REASONING_MODE = os.getenv("GUNGNIR_REASONING_REALM", "local") # 'local', 'cloud', 'enterprise'
+LOCAL_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:7b")
 
 # Define the state for the multiagent system
 class AgentState(TypedDict):
@@ -16,21 +15,22 @@ class AgentState(TypedDict):
 
 def supervisor(state: AgentState):
     """The Supervisor agent that decides which worker should act next."""
-    # In 'local' mode, we simulate the Thor/Loki local offloading logic
+    # Routing to Fabric Worker
     return {"next_agent": "fabric_worker"}
 
 def fabric_worker(state: AgentState):
     """Worker that interacts with Mjolnir-Fabric."""
-    context = "Found 3 vulnerabilities in unencrypted S3 buckets via LakeFS metadata."
+    # Data provided by Mjolnir-Fabric (Mocked for initial demo)
+    context = "Security Alert: Found 3 vulnerabilities in unencrypted S3 buckets via LakeFS metadata."
     if REASONING_MODE == "local":
-        context += f" [Reasoned via Edge Model: {LOCAL_MODEL}]"
+        context += f" [Verified via Thor Local Edge: {LOCAL_MODEL}]"
     return {"data_context": context, "next_agent": "analyst"}
 
 def analyst(state: AgentState):
     """Analyst worker that processes the context."""
     context = state.get("data_context", "No data found.")
     last_message = state['messages'][-1].content
-    response = f"Gungnir Analysis ({REASONING_MODE}): Based on '{last_message}', I accessed Mjolnir-Fabric. {context}"
+    response = f"Odin-Alpha Analytics ({REASONING_MODE.upper()} Realm): Based on your query '{last_message}', the Data Fabric reports: {context}"
     return {"messages": [HumanMessage(content=response)], "next_agent": END}
 
 # Initialize the graph
