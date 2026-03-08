@@ -6,11 +6,6 @@ services:
     environment:
       - QDRANT_HOST=qdrant
       - LAKEFS_ENDPOINT=http://lakefs:8000
-      - REASONING_MODE=local
-      - OLLAMA_BASE_URL=http://host.docker.internal:11434
-      - LOCAL_MODEL_ID=qwen2.5-coder:7b
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     networks:
       - gungnir-net
     depends_on:
@@ -40,6 +35,42 @@ services:
     build: ./valkyrie-integrations
     ports:
       - "8002:8002"
+    networks:
+      - gungnir-net
+
+  valkyrie-connectors:
+    build: ./valkyrie-connectors
+    ports:
+      - "8003:8003"
+    environment:
+      - POSTGRES_URL=postgresql://odin:spear@postgres:5432/gungnir
+      - MONGO_URL=mongodb://mongo:27017
+      - MQTT_BROKER=mosquitto
+    networks:
+      - gungnir-net
+    depends_on:
+      - postgres
+      - mongo
+      - mosquitto
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=odin
+      - POSTGRES_PASSWORD=spear
+      - POSTGRES_DB=gungnir
+    networks:
+      - gungnir-net
+
+  mongo:
+    image: mongo:latest
+    networks:
+      - gungnir-net
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
     networks:
       - gungnir-net
 
